@@ -59,8 +59,8 @@ class MembershipController extends Controller
     public function destroy($id)
     {
         //dd($id);
-        $award=Award::query()->find($id);
-        $award->delete();
+        $membership=Membership::query()->find($id);
+        $membership->delete();
         return back();
     }
 
