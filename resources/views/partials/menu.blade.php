@@ -4,8 +4,10 @@
     <div class="flex items-center justify-center mt-4">
         <div class="flex items-center">
             <span class="text-white text-2xl mx-2 font-semibold">
+            <a href="{{ route("admin.home") }}">
                <img style="border-style: none;" src="{{ asset('img/logo.png')}}" />
             </span>
+            </a>
         </div>
     </div>
 
