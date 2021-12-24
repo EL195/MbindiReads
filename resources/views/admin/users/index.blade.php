@@ -80,7 +80,7 @@
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
-                            @if($user->id!=1 || $user->id!=4)
+                            @if($user->id!=1 && $user->id!=4)
                                 @can('user_delete')
                                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
