@@ -67,6 +67,10 @@
             <i class="fa-fw fas fa-money"></i>
                 <span class="mx-4">{{ trans('cruds.global.payements') }}</span>
         </a>
+        <a class="nav-link{{ request()->is('admin/users*') ? ' active' : '' }}" href="{{ route('admin.notifications.index') }}">
+            <i class="fa-fw fas fa-bell"></i>
+                <span class="mx-4">{{ trans('cruds.global.notifications') }}</span>
+        </a>
       <!-- My account section -->
        <a  style="background:black;color: white !important; pointer-events: none;cursor: default;" class="nav-link ? ' active' : '' }}" href="" disabled>
             <span class="mx-4">{{ trans('cruds.global.myaccount') }}</span>

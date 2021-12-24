@@ -158,6 +158,9 @@ return [
         'type' => 'Type', 
         'periode' => 'Periode',
         'paswordchange' => 'Pasword change',
+        'notifications' => 'Notifications',
+        'title' => 'title',
+        'content' => 'content',
     ],
     'forms'         => [
         'id'                => 'ID',

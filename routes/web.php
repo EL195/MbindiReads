@@ -102,6 +102,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('payement/media', 'PayementController@storeMedia')->name('payement.storeMedia');
     Route::post('payement/ckmedia', 'PayementController@storeCKEditorImages')->name('payement.storeCKEditorImages');
     Route::resource('payement', 'PayementController');
+
+    // Notifications
+    Route::delete('notifications/destroy', 'NotificationController@massDestroy')->name('notifications.massDestroy');
+    Route::post('notifications/media', 'NotificationController@storeMedia')->name('notifications.storeMedia');
+    Route::post('notifications/ckmedia', 'NotificationController@storeCKEditorImages')->name('notifications.storeCKEditorImages');
+    Route::resource('notifications', 'NotificationController');
 });
 
 
