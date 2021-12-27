@@ -56,7 +56,7 @@
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
             <div class="mb-3">
-                <label for="type" class="text-xs required">{{ trans('cruds.global.subject') }} : {{ $ressource->subject->name }}</label>
+                <label for="type" class="text-xs required">{{ trans('cruds.global.subject') }} : {{ $ressource->subject->name ?? '' }}</label>
                 <div class="form-group">
                     <select name="subject_id" id="subject_id" class="{{ $errors->has('subject_id') ? 'is-invalid' : '' }}" value="{{ old('subject_id') }}" required>
                         @foreach($subjects as $key => $subject)
@@ -70,7 +70,7 @@
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
             <div class="mb-3">
-                <label for="type" class="text-xs required">{{ trans('cruds.global.genre') }} : {{ $ressource->genre->name }}</label>
+                <label for="type" class="text-xs required">{{ trans('cruds.global.genre') }} : {{ $ressource->genre->name ?? ''}}</label>
                 <div class="form-group">
                     <select name="genre_id" id="genre_id" class="{{ $errors->has('genre_id') ? 'is-invalid' : '' }}" value="{{ old('genre_id') }}" required>
                         @foreach($genres as $key => $genre)
@@ -84,7 +84,7 @@
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
             <div class="mb-3">
-                <label for="type" class="text-xs required">{{ trans('cruds.global.theme') }} : {{ $ressource->theme->name }}</label>
+                <label for="type" class="text-xs required">{{ trans('cruds.global.theme') }} : {{ $ressource->theme->name ?? ''}}</label>
                 <div class="form-group">
                     <select name="theme_id" id="theme_id" class="{{ $errors->has('theme_id') ? 'is-invalid' : '' }}" value="{{ old('theme_id') }}" required>
                         @foreach($themes as $key => $theme)
@@ -98,7 +98,7 @@
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
             <div class="mb-3" id="levelid">
-                <label for="type" class="text-xs required">{{ trans('cruds.global.level') }} : {{ $ressource->theme->level }}</label>
+                <label for="type" class="text-xs required">{{ trans('cruds.global.level') }} : {{ $ressource->theme->level ?? ''}}</label>
                 <div class="form-group">
                     <select name="level_id" id="level_id" class="{{ $errors->has('level_id') ? 'is-invalid' : '' }}" value="{{ old('level_id') }}" required>
                         @foreach($levels as $key => $level)
