@@ -15,7 +15,7 @@
         <a class="nav-link ? ' active' : '' }}" href="{{ route("admin.home") }}">
             <i class="fas fa-fw fa-tachometer-alt">
             </i>
-            <span class="mx-4">{{ trans('cruds.global.dashboard') }}</span>
+            <span class="mx-4">{{ trans('cruds.global.manual') }}</span>
         </a>
         <!-- Management section -->
        <a  style="background:black;color: white !important; pointer-events: none;cursor: default;" class="nav-link ? ' active' : '' }}" href="" disabled>

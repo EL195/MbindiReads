@@ -179,6 +179,7 @@ return [
         'ChooseB' => 'Pease choose book type to continue',
         'pdf' => 'PDF',
         'image' => 'Image',
+        'manual' => 'Admin notice',
         'view_pdf' => 'View pdf',
         'view_image' => 'View image',
         'view_quiz' => 'View quiz',
