@@ -12,6 +12,7 @@
     </div>
 
     <nav class="mt-4">
+    @can('user_management_access')
         <a class="nav-link ? ' active' : '' }}" href="{{ route("admin.home") }}">
             <i class="fas fa-fw fa-tachometer-alt">
             </i>
@@ -75,6 +76,7 @@
             <i class="fa-fw fas fa-language"></i>
                 <span class="mx-4">{{ trans('cruds.global.langues') }}</span>
         </a>
+    @endcan
       <!-- My account section -->
        <a  style="background:black;color: white !important; pointer-events: none;cursor: default;" class="nav-link ? ' active' : '' }}" href="" disabled>
             <span class="mx-4">{{ trans('cruds.global.myaccount') }}</span>
@@ -90,9 +92,7 @@
         @endif
         <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
             <i class="fa-fw fas fa-sign-out-alt">
-
             </i>
-
             <span class="mx-4">{{ trans('global.logout') }}</span>
         </a>
 

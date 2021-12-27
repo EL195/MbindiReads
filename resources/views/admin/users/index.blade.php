@@ -69,6 +69,9 @@
                                 @endforeach
                             </td>
                             <td>
+                                <a onclick="return confirm('{{ trans('global.areYouSure') }}');"  style="border:1px solid green; border-radius:5px;" class="btn-sm btn-success " href="">
+                                        {{ trans('cruds.global.switch') }}
+                                </a>
                                 @can('user_show')
                                     <a class="btn-sm btn-indigo" href="{{ route('admin.users.show', $user->id) }}">
                                         {{ trans('global.view') }}

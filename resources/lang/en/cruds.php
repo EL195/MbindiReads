@@ -185,6 +185,7 @@ return [
         'view_quiz' => 'View quiz',
         'ageroupge' => 'Age group',
         'points' => 'Points',
+        'switch' => 'Switch to this user',
         'total' => 'Total',
         'quiz' => 'Quiz',
         'text' => 'Texte',
