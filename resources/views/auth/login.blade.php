@@ -49,6 +49,10 @@
                 {{ trans('global.login') }}
             </button>
         </div>
+
+        <div style="margin-top:25px;">
+                    <a style="text-align:center;" class="link" href="{{ route('register') }}">{{ trans('cruds.global.registertext') }}</a>
+        </div>
     </form>
 </div>
 @endsection
