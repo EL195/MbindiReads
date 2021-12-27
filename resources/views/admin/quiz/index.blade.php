@@ -71,7 +71,7 @@
                             <td style="float: right;">
                               @can('folder_show')
                                     <a class="btn-sm btn-indigo" href="{{ route('admin.answers.index', ['quiz' => $quiz->id]) }}">
-                                        {{ trans('global.view_answers') }}
+                                        {{ trans('cruds.global.view_answers') }}
                                     </a>
                                 @endcan 
 

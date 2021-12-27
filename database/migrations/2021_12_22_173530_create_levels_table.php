@@ -18,6 +18,8 @@ class CreateLevelsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('order')->nullable();
+            $table->unsignedInteger('agegroup_id');
+            $table->foreign('agegroup_id', 'agegroup_id_fk_1947072')->references('id')->on('agegroup')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

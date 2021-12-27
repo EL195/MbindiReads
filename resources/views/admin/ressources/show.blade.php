@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
                     <th>
-                         {{ trans('cruds.global.aageroupge') }}
+                         {{ trans('cruds.global.ageroupge') }}
                     </th>
                     <td>
                         {{ $ressource->ageroup->name ?? '' }}
@@ -75,7 +75,7 @@
                     </th>
                     <td>
                                     <a href="{{ $ressource->file_path }}" target="_blank">
-                                        {{ trans('global.view_pdf') }}
+                                        {{ trans('cruds.global.view_pdf') }}
                                     </a>
                     </td>
                 </tr>
@@ -86,7 +86,7 @@
                     <td>
                                   @foreach($ressource->files as $key => $media)
                                     <a href="{{ $media->getUrl() }}" target="_blank">
-                                        {{ trans('global.view_image') }}
+                                        {{ trans('cruds.global.view_image') }}
                                     </a>
                                 @endforeach
                     </td>
@@ -95,7 +95,7 @@
         </table>
         <div class="block pt-4">
             <a style="background: green;color:white;" class="btn-md btn-danger" href="{{ route('admin.quiz.index', ['quiz' => $ressource->id]) }}">
-                {{ trans('global.vew quiz') }}
+                {{ trans('cruds.global.view_quiz') }}
             </a>
         </div>
     </div>

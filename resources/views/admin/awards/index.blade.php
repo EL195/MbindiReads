@@ -74,11 +74,10 @@
                                 {{ $award->order ?? '' }}
                             </td>
                             <td style="float: right;">
-{{--                                 @can('folder_show')
-                                    <a class="btn-sm btn-indigo" href="{{ route('admin.subjects.show', $subject->id) }}">
-                                        {{ trans('global.view') }}
+                                    <a class="btn-sm btn-indigo" href="{{ $award->file_path }}" target="_blank">
+                                        {{ trans('cruds.global.viewbadge') }}
                                     </a>
-                                @endcan --}}
+                                    </a>
 
                                 @can('folder_edit')
                                     <a class="btn-sm btn-blue" href="{{ route('admin.awards.edit', $award->id) }}">

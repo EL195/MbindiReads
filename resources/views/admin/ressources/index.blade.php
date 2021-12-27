@@ -48,6 +48,9 @@
                             {{ trans('cruds.global.theme') }}
                         </th>
                         <th>
+                            {{ trans('cruds.global.langue') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -78,6 +81,9 @@
                             </td>
                               <td style="text-align: center;">
                                 {{ $ressource->theme->name ?? '' }}
+                            </td>
+                            <td style="text-align: center;">
+                             {{ $ressource->langue->title }}
                             </td>
                             <td style="float: right;">
                                     <a href="{{ $ressource->file_path }}" target="_blank">

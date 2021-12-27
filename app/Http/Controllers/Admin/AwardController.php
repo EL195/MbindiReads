@@ -31,7 +31,31 @@ class AwardController extends Controller
 
     public function store(StoreFolderRequest $request)
     {
-        $award = Award::create($request->all());
+
+        $request->validate([
+            //'file' => 'required|mimes:pdf|max:2048',
+            'file' => 'required|mimes:png,jpg,jpeg,gif|max:2048'
+            ]);
+        $fileModel = new Award;
+
+        if($request->file()) {
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->file = time().'_'.$request->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->name = $request->name;
+            $fileModel->description = $request->description;
+            $fileModel->note = $request->note;
+            $fileModel->order = $request->order;
+            $fileModel->save();
+        }
+        else{
+            $fileModel->name = $request->name;
+            $fileModel->description = $request->description;
+            $fileModel->note = $request->note;
+            $fileModel->order = $request->order;
+            $fileModel->save();
+        }
         return redirect()->route('admin.awards.index');
     }
 
@@ -45,12 +69,26 @@ class AwardController extends Controller
 
     public function update(UpdateFolderRequest $request, $id)
     {
+        if($request->file()) {
+            $award = Award::query()->find($id);
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $award->file = time().'_'.$request->file->getClientOriginalName();
+            $award->file_path = '/storage/' . $filePath;
+            $award->name = $request->name;
+            $award->note = $request->note;
+            $award->order = $request->order;
+            $award->description = $request->description;
+            $award->update();
+        }
+        else{
         $award = Award::query()->find($id);
         $award->name = $request->name;
         $award->note = $request->note;
         $award->order = $request->order;
         $award->description = $request->description;
         $award->update();
+        }
         return redirect()->route('admin.awards.index');
     }
 

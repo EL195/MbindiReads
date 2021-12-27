@@ -30,6 +30,8 @@ class Award extends Model implements HasMedia
         'description',
         'note',
         'order',
+        'file',
+        'file_path',
         'created_at',
         'updated_at',
         'deleted_at',

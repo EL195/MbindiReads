@@ -8,6 +8,7 @@ use App\Models\Subject;
 use App\Models\Genre;
 use App\Models\Ressource;
 use App\Models\Theme;
+use App\Models\Langue;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyFolderRequest;
@@ -26,7 +27,7 @@ class RessourceController extends Controller
     public function index()
     {
 
-        $ressources = Ressource::query()->with("agegroup", "genre", "subject", "theme", "level")->get();
+        $ressources = Ressource::query()->with("agegroup", "genre", "subject", "theme", "level", "langue")->get();
        // dd($ressources);
         return view('admin.ressources.index', compact('ressources'));
     }
@@ -38,12 +39,14 @@ class RessourceController extends Controller
         $themes = Theme::all();
         $subjects = Subject::all();
         $levels = Level::all();
+        $langues = Langue::all();
         return view('admin.ressources.create', compact(
             'agegroups',
             'genres',
             'themes',
             'subjects',
-            'levels'
+            'levels',
+            'langues'
         )
         );
     }
@@ -71,6 +74,7 @@ class RessourceController extends Controller
                 $fileModel->pages_number = $request->pages_number;
                 $fileModel->author = $request->author;
                 $fileModel->agegroup_id = $request->agegroup_id;
+                $fileModel->langue_id = $request->langue_id;
                 $fileModel->genre_id = $request->genre_id;
                 $fileModel->subject_id = $request->subject_id;
                 $fileModel->theme_id = $request->theme_id;
@@ -115,6 +119,7 @@ class RessourceController extends Controller
         $ressource->description = $request->description;
         $ressource->pages_number = $request->pages_number;
         $ressource->author = $request->author;
+        $ressource->langue_id = $request->langue_id;
         $ressource->agegroup_id = $request->agegroup_id;
         $ressource->genre_id = $request->genre_id;
         $ressource->subject_id = $request->subject_id;

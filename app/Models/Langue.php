@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
 use \DateTimeInterface;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Ressource extends Model implements HasMedia
+class Langue extends Model implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia;
 
-    public $table = 'ressources';
+    public $table = 'langues';
 
     protected $appends = [
         'files',
@@ -27,19 +26,9 @@ class Ressource extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name',
-        'description',
-        'image',
-        'file',
-        'image',
-        'file_path',
-        'author',
-        'pages_number',
-        'published_date',
-        'agegroup_id',
-        'genre_id',
-        'subject_id',
-        'theme_id',
+        'title',
+        'code',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -56,39 +45,13 @@ class Ressource extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function agegroup()
-    {
-        return $this->belongsTo(Agegroup::class, 'agegroup_id');
-    }
-
-    public function genre()
-    {
-        return $this->belongsTo(Genre::class, 'genre_id');
-    }
-
     public function subject()
     {
-        return $this->belongsTo(Subject::class, 'subject_id');
-    }
-
-    public function theme()
-    {
-        return $this->belongsTo(Theme::class, 'theme_id');
-    }
-
-    public function level()
-    {
-        return $this->belongsTo(Level::class, 'level_id');
-    }
-
-    public function langue()
-    {
-        return $this->belongsTo(Langue::class, 'langue_id');
+        return $this->belongsTo(Folder::class, 'folder_id');
     }
 
     public function getFilesAttribute()
     {
         return $this->getMedia('files');
     }
-
 }

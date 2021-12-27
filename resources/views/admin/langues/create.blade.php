@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 @section('content')
+
 <div class="main-card">
     <div class="header">
-        {{ trans('global.edit') }} {{ trans('cruds.global.award') }}
+        {{ trans('global.create') }} {{ trans('cruds.global.langue') }}
     </div>
 
-    <form method="POST" action="{{ route("admin.awards.update", [$award->id]) }}" enctype="multipart/form-data">
-        @method('PUT')
+    <form method="POST" action="{{ route("admin.langues.store") }}" enctype="multipart/form-data">
         @csrf
         <div class="body">
             <div class="mb-3">
-                <label for="name" class="text-xs required">{{ trans('cruds.folder.fields.name') }}</label>
+                <label for="title" class="text-xs required">{{ trans('cruds.global.title') }}</label>
                 <div class="form-group">
-                    <input type="text" id="name" name="name" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name', $award->name) }}" required>
+                    <input type="text" id="title" name="title" class="{{ $errors->has('title') ? 'is-invalid' : '' }}" value="{{ old('title') }}" required>
                 </div>
                 @if($errors->has('name'))
                     <p class="invalid-feedback">{{ $errors->first('name') }}</p>
@@ -20,52 +20,32 @@
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
             <div class="mb-3">
-                <label for="name" class="text-xs required">{{ trans('cruds.global.note') }}</label>
+                <label for="name" class="text-xs required">{{ trans('cruds.global.code') }}</label>
                 <div class="form-group">
-                    <input type="number" id="note" name="note" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('note', $award->note) }}" required>
+                    <input type="text" id="code" name="code" class="{{ $errors->has('code') ? 'is-invalid' : '' }}" value="{{ old('code') }}" required>
                 </div>
-                @if($errors->has('name'))
-                    <p class="invalid-feedback">{{ $errors->first('years_start') }}</p>
+                @if($errors->has('code'))
+                    <p class="invalid-feedback">{{ $errors->first('code') }}</p>
                 @endif
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
-            <div class="mb-3">
-                <label for="name" class="text-xs required">{{ trans('cruds.global.order') }}</label>
+            <div class="mb-3" id="status">
+                <label for="type" class="text-xs required">{{ trans('cruds.global.status') }}</label>
                 <div class="form-group">
-                    <input type="number" id="order" name="order" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('order', $award->order) }}" required>
+                    <select name="status" id="status" class="{{ $errors->has('status') ? 'is-invalid' : '' }}" value="{{ old('status') }}" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
                 </div>
-                @if($errors->has('name'))
-                    <p class="invalid-feedback">{{ $errors->first('years_end') }}</p>
+                @if($errors->has('status'))
+                    <p class="invalid-feedback">{{ $errors->first('status') }}</p>
                 @endif
                 <span class="block">{{ trans('cruds.folder.fields.name_helper') }}</span>
             </div>
-            <div class="mb-3">
-                <label for="name" class="text-xs required">{{ trans('cruds.forms.descritpion') }}</label>
-                <div class="form-group">
-                    <textarea style="width: 100%;" id="description" name="description" class="{{ $errors->has('description') ? 'is-invalid' : '' }}"  required>
-                   {{ old('description', $award->description) }}"
-                   </textarea>
-                </div>
-                @if($errors->has('name'))
-                    <p class="invalid-feedback">{{ $errors->first('name') }}</p>
-                @endif
-                <span class="block">{{ trans('cruds.folder.fields.description_helper') }}</span>
-            </div>
-            <div class="mb-3">
-                <label for="file" class="text-xs required">{{ trans('cruds.global.file') }}</label>
-                <div class="form-group">
-                    <input type="file" id="file" name="file" class="{{ $errors->has('file') ? 'is-invalid' : '' }}" value="{{ old('file') }}" required>
-                </div>
-                @if($errors->has('file'))
-                    <p class="invalid-feedback">{{ $errors->first('file') }}</p>
-                @endif
-
-            </div>
-  
         </div>
 
         <div class="footer">
-            <button type="submit" class="submit-button">{{ trans('global.update') }}</button>
+            <button type="submit" class="submit-button">{{ trans('global.save') }}</button>
         </div>
     </form>
 </div>

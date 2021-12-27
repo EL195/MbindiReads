@@ -3,13 +3,13 @@
 @can('folder_create')
     <div class="block my-4">
         <h1>
-        {{ trans('cruds.menu.answers') }}   >> {{$quiz->title}}
+        {{ trans('cruds.global.langues') }}
         </h1>
     </div>
 
     <div class="block my-4" style="float: right;">
-        <a class="btn-md btn-green items-end" href="{{ route('admin.answers.create', ['quiz' => $ressource_id]) }}">
-            {{ trans('global.add') }} {{ trans('cruds.global.answer') }}
+        <a class="btn-md btn-green items-end" href="{{ route('admin.langues.create') }}">
+            {{ trans('global.add') }} {{ trans('cruds.global.langue') }}
         </a>
     </div>
 @endcan
@@ -27,67 +27,68 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.folder.fields.id') }}
+                            Id
                         </th>
                         <th>
-                            {{ trans('cruds.global.titleOrImage') }}
+                            {{ trans('cruds.global.title') }}
                         </th>
                         <th>
-                            {{ trans('cruds.global.type') }}
+                            {{ trans('cruds.global.code') }}
                         </th>
-                         <th>
+                        <th>
                             {{ trans('cruds.global.status') }}
                         </th>
+{{--                         <th>
+                            {{ trans('cruds.folder.fields.folder') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.folder.fields.files') }}
+                        </th> --}}
                         <th>
                             &nbsp;
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($answers as $key => $answer)
-                        <tr data-entry-id="{{ $answer->id }}">
-                            <td >
-                                
+                    @foreach($langues as $key => $langue)
+                        <tr data-entry-id="{{ $langue->id }}">
+                            <td>
+
                             </td>
                             <td style="text-align: center;">
-                                {{ $answer->id }}
-                            </td> 
-                            @if($answer->type=="text")
-                                <td style="text-align: center;">
-                                    {{ $answer->title ?? '' }}
-                                </td>
+                                {{ $langue->id ?? '' }}
+                            </td>
+                            <td style="text-align: center;">
+                                {{ $langue->title ?? '' }}
+                            </td>
+                            <td style="text-align: center;">
+                                {{ $langue->code ?? '' }}
+                            </td>
+                            @if($langue->status==1)
+                            <td style="text-align: center;">
+                             {{ trans('cruds.global.active') }}
+                            </td>
                             @else
-                                <td style="text-align: center;">
-                                    <a href="{{ $answer->image ?? '' }}" target="_blank">
-                                        {{ trans('global.view_image') }}
-                                    </a>
-                                </td>
-                             @endif
-
-                                <td style="text-align: center;">
-                                    {{ $answer->type ?? '' }}
-                                </td>
-                            @if($answer->choose==0)
-                                <td style="text-align: center;">
-                                     {{ trans('global.falseAnswer') }}
-                                </td>
-                            @else
-                                <td style="text-align: center;">
-                                    {{ trans('global.trueAnswer') }}
-                                </td>
-                             @endif
-                           
+                            <td style="text-align: center;">
+                             {{ trans('cruds.global.inactive') }}
+                            </td>
+                            @endif
 
                             <td style="float: right;">
+{{--                                 @can('folder_show')
+                                    <a class="btn-sm btn-indigo" href="{{ route('admin.subjects.show', $subject->id) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                @endcan --}}
 
                                 @can('folder_edit')
-                                    <a class="btn-sm btn-blue" href="{{ route('admin.answers.edit', $answer->id) }}">
+                                    <a class="btn-sm btn-blue" href="{{ route('admin.langues.edit', $langue->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
                                 @can('folder_delete')
-                                    <form action="{{ route('admin.answers.destroy', $answer->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="{{ route('admin.langues.destroy', $langue->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn-sm btn-red" value="{{ trans('global.delete') }}">
@@ -116,7 +117,7 @@
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.levels.massDestroy') }}",
+    url: "{{ route('admin.subjects.massDestroy') }}",
     className: 'btn-red',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {

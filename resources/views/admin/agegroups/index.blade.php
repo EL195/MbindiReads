@@ -62,10 +62,10 @@
                                 {{ $agegroup->name ?? '' }}
                             </td>
                             <td style="text-align: center;">
-                                {{ $agegroup->years_start ?? '' }}
+                                {{ $agegroup->years_start ?? '' }} {{ trans('cruds.global.years') }}
                             </td>
                             <td style="text-align: center;">
-                                {{ $agegroup->years_end ?? '' }}
+                                {{ $agegroup->years_end ?? '' }} {{ trans('cruds.global.years') }}
                             </td>
                             <td style="float: right;">
 {{--                                 @can('folder_show')

@@ -108,6 +108,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('notifications/media', 'NotificationController@storeMedia')->name('notifications.storeMedia');
     Route::post('notifications/ckmedia', 'NotificationController@storeCKEditorImages')->name('notifications.storeCKEditorImages');
     Route::resource('notifications', 'NotificationController');
+
+    // Langues
+    Route::delete('langues/destroy', 'LangueController@massDestroy')->name('langues.massDestroy');
+    Route::post('langues/media', 'LangueController@storeMedia')->name('langues.storeMedia');
+    Route::post('langues/ckmedia', 'LangueController@storeCKEditorImages')->name('langues.storeCKEditorImages');
+    Route::resource('langues', 'LangueController');
 });
 
 

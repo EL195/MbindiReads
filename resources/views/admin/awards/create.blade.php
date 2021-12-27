@@ -50,6 +50,16 @@
                 @endif
                 <span class="block">{{ trans('cruds.folder.fields.description_helper') }}</span>
             </div>
+            <div class="mb-3">
+                <label for="file" class="text-xs required">{{ trans('cruds.global.file') }}</label>
+                <div class="form-group">
+                    <input type="file" id="file" name="file" class="{{ $errors->has('file') ? 'is-invalid' : '' }}" value="{{ old('file') }}" required>
+                </div>
+                @if($errors->has('file'))
+                    <p class="invalid-feedback">{{ $errors->first('file') }}</p>
+                @endif
+
+            </div>
   
 
 {{--             <div class="mb-3">
