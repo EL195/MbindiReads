@@ -176,7 +176,7 @@ return [
         'leveled' => 'Leveled book only',
         'agegrouponly' => 'Age group Only',
         'agegroupandlevel' => 'Age group and Leveled book',
-        'ChooseB' => 'Pease choose book type to continue',
+        'ChooseB' => 'Please choose book type to continue',
         'pdf' => 'PDF',
         'image' => 'Image',
         'manual' => 'Admin notice',
