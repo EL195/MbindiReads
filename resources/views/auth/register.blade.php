@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('register') }}">
         @csrf
         <label class="block">
             <span class="text-gray-700 text-sm">{{ trans('cruds.global.last_name') }}</span>
@@ -39,7 +39,7 @@
         <label class="block">
             <span class="text-gray-700 text-sm">{{ trans('cruds.global.phone') }}</span>
             <input type="number" name="phone" class="form-input {{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" autofocus required>
-            @if($errors->has('email'))
+            @if($errors->has('phone'))
                 <p class="invalid-feedback">{{ $errors->first('phone') }}</p>
             @endif
         </label>
@@ -59,6 +59,14 @@
             @if($errors->has('password'))
                 <p class="invalid-feedback">{{ $errors->first('password') }}</p>
             @endif
+        </label>
+
+        <label class="block mt-3">
+            <span class="text-gray-700 text-sm">{{ trans('cruds.global.role') }}</span>
+                    <select name="role" id="role" class="form-input{{ $errors->has('role') ? 'is-invalid' : '' }}" value="{{ old('role') }}" required>
+                        <option value="4">School</option>
+                        <option value="3">Parent</option>
+                    </select>
         </label>
 
         <div class="flex justify-between items-center mt-4">

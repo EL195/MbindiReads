@@ -69,9 +69,14 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a onclick="return confirm('{{ trans('global.areYouSure') }}');"  style="border:1px solid green; border-radius:5px;" class="btn-sm btn-success " href="">
+  {{--                               <a onclick="return confirm('{{ trans('global.areYouSure') }}');"  style="border:1px solid green; border-radius:5px;" class="btn-sm btn-success " href="">
                                         {{ trans('cruds.global.switch') }}
-                                </a>
+                                </a> --}}
+
+                               {{--    <a style="color: green;border:1px solid green!important; border-radius:5px;" class="btn-sm btn-success" onclick="myFunction('<?php echo $user->email; ?>','<?php echo $user->password; ?>');">
+                                              {{ trans('cruds.global.switch') }}
+                                          </a> --}}
+
                                 @can('user_show')
                                     <a class="btn-sm btn-indigo" href="{{ route('admin.users.show', $user->id) }}">
                                         {{ trans('global.view') }}
@@ -152,5 +157,24 @@
   
 })
 
+
+
+</script>
+@endsection
+
+@section('scripts')
+<script>
+function myFunction(username, code) {
+  //confirm("Press a button!\nEither OK or Cancel.");
+  if (confirm("Continue?\nEither OK or Cancel.") == true) {
+    localStorage.removeItem("partner");
+    localStorage.removeItem("code_p");
+    localStorage.setItem("partner", username);
+    localStorage.setItem("code_p", code);
+    window.location.href = "https://partners.mbindireads.com";
+  } else {
+    text = "You canceled!";
+  }
+}
 </script>
 @endsection

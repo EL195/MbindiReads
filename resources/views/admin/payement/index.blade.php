@@ -28,16 +28,32 @@
                         <th>
                             {{ trans('cruds.global.price') }}
                         </th>
+                        @if($role=="Admin")
                         <th>
                             {{ trans('cruds.global.users') }}
+                
                         </th>
-                         <th>
+                        @endif
+             
+                        <th>
                             {{ trans('cruds.global.membership') }}
                         </th>
+                       @if($role!="Admin")
+                        <th>
+                            {{ trans('cruds.global.beneficiary') }}
+                        </th>
+                        @endif
+                      
+
+
                         <th>
                             {{ trans('cruds.global.status') }}
                         </th>
-{{--                         <th>
+                                   <th>
+                            {{ trans('cruds.global.validity') }}
+                
+                        </th>
+{{--                        <th>
                             {{ trans('cruds.folder.fields.folder') }}
                         </th>
                         <th>
@@ -58,18 +74,41 @@
                                 {{ $payement->id ?? '' }}
                             </td>
                             <td style="text-align: center;">
-                                {{ $payement->price ?? '' }}
+                                {{ $payement->price ?? '' }} XAF
                             </td>
+                            @if($role=="Admin")
                             <td style="text-align: center;">
-                                {{ $payement->users->name ?? '' }}
+                                {{ $payement->user->name ?? '' }}
                             </td>
+                            @endif
                             <td style="text-align: center;">
                                 {{ $payement->membership->name ?? '' }}
                             </td>
-                              <td style="text-align: center;">
-                                {{ $payement->status ?? '' }}
-                            </td>
 
+                            @if($role=="Parent")
+                            <td style="text-align: center;">
+                                {{ $payement->student->first_name ?? '' }}
+                            </td>
+                            @endif
+                            @if($role=="School")
+                            <td style="text-align: center;">
+                               {{ $payement->classe->name ?? '' }}
+                            </td>
+                            @endif
+                            @if($payement->status==1)
+                            <td style="text-align: center;">
+                               {{ trans('cruds.global.paid') }}
+                            </td>
+                            @else
+                            <td style="text-align: center;">
+                                 {{ trans('cruds.global.waitingv') }}
+                            </td>
+                            @endif
+                            @if($payement->status==1 && $payement->start==1)
+                            <td style="text-align: center;">
+                               {{ date('Y-m-d', strtotime($payement->updated_at. ' + '.$payement->membership->periode.'days')) }}
+                            </td>
+                            @endif
                       
                             <td style="float: right;">
 {{--                                 @can('folder_show')
@@ -77,19 +116,18 @@
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan --}}
-
-                                @can('folder_edit')
-                                    <a class="btn-sm btn-blue" href="{{ route('admin.payement.edit', $payement->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                @if($role=="Admin")
+                    
+                                @endif
 
                                 @can('folder_delete')
+                                @if($payement->start==0)
                                     <form action="{{ route('admin.payement.destroy', $payement->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn-sm btn-red" value="{{ trans('global.delete') }}">
+                                        <input type="submit" class="btn-sm btn-green" value="{{ trans('cruds.global.validate') }}">
                                     </form>
+                                @endif
                                 @endcan
 
                             </td>

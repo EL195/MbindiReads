@@ -14,6 +14,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class PayementController extends Controller
 {
@@ -22,9 +23,32 @@ class PayementController extends Controller
     public function index()
     {
 
-        $payements = Payement::query()->with("use", "membership")->get();
-        //dd($levels);
-        return view('admin.payement.index', compact('payements'));
+        $userId = Auth::id();
+        $CurentUser= User::query()->where("id", $userId)->with("roles")->get()[0];
+
+        if($CurentUser->roles[0]->title == "Admin"){
+       // $userId = Auth::id();
+        $payements = Payement::query()->with("user", "membership")->get();
+        $CurentUser= User::query()->with("roles")->get()[0];
+        $role = $CurentUser->roles[0]->title;
+        //dd($payements);
+        return view('admin.payement.index', compact('payements', 'role'));
+        }
+        else{
+            if($CurentUser->roles[0]->title == "Parent"){
+                $payements = Payement::query()->where("user_id", $userId)->with("user", "membership", "student")->get();
+                //dd($payements);
+                $role = $CurentUser->roles[0]->title;
+                return view('admin.payement.index', compact('payements', 'role'));
+            }
+            else{
+                $payements = Payement::query()->where("user_id", $userId)->with("user", "membership", "classe")->get();
+                //dd($payements);
+                $role = $CurentUser->roles[0]->title;
+                return view('admin.payement.index', compact('payements', 'role')); 
+            }
+
+        }
     }
 
     public function create()
@@ -66,8 +90,10 @@ class PayementController extends Controller
     public function destroy($id)
     {
         //dd($id);
-        $level=Level::query()->find($id);
-        $level->delete();
+        $payement=Payement::query()->find($id);
+        $payement->status = 1;
+        $payement->start = 1;
+        $payement->update();
         return back();
     }
 

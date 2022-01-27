@@ -39,4 +39,9 @@ class Agegroup extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function getFilesAttribute()
+    {
+        return $this->getMedia('files');
+    }
+
 }

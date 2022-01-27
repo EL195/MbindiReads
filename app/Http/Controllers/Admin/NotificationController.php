@@ -15,6 +15,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -23,7 +24,8 @@ class NotificationController extends Controller
     public function index()
     {
 
-        $notifications = Notification::all();
+        $userId = Auth::id();
+        $notifications = Notification::query()->where("users", $userId)->with("user")->with("membership")->get();
         return view('admin.notifications.index', compact('notifications'));
     }
 

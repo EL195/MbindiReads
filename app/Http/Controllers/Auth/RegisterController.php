@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+
 
 class RegisterController extends Controller
 {
@@ -50,9 +53,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => ['required', 'string', 'max:255'],
+            'fisrt_name'     => ['required', 'string', 'max:255'],
+            'last_name'     => ['required', 'string', 'max:255'],
+            'phone'     => ['required', 'integer'],
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6'],
+            'role' => ['required'],
         ]);
     }
 
@@ -64,10 +70,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name'     => $data['name'],
+        $user  =  User::create([
+            'fisrt_name'     => $data['fisrt_name'],
+            'last_name'     => $data['last_name'],
+            'phone'     => $data['phone'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $id= $user->id;
+        DB::insert('insert into role_user values (?, ?)', [$id, $data['role']]);
+
+/*         Mail::send('newUser', function($message){
+            $message->from('contact@mbindireads.com');
+            $message->subject('Welcome to Mbindi Reads');
+            $message->to($data['email']);
+        }); */
+
+        //return view('/login');
+        //return redirect()->route('login');
+
     }
 }

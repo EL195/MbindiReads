@@ -10,9 +10,6 @@
 
 @endcan
 <div class="main-card">
-{{--     <div class="header">
-        {{ trans('cruds.folder.title_singular') }} {{ trans('global.list') }}
-    </div> --}}
 
     <div class="body">
         <div class="w-full">
@@ -20,13 +17,12 @@
                 <thead>
                     <tr>
                         <th width="10">
-
                         </th>
                         <th>
                             {{ trans('cruds.folder.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.global.title') }}
+                            {{ trans('cruds.global.content') }}
                         </th>
                         <th>
                             {{ trans('cruds.global.status') }}
@@ -34,12 +30,6 @@
                          <th>
                             {{ trans('cruds.global.content') }}
                         </th>
-{{--                         <th>
-                            {{ trans('cruds.folder.fields.folder') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.folder.fields.files') }}
-                        </th> --}}
                         <th>
                             &nbsp;
                         </th>
@@ -47,7 +37,7 @@
                 </thead>
                 <tbody>
                     @foreach($notifications as $key => $notification)
-                        <tr data-entry-id="{{ $payement->id }}">
+                        <tr data-entry-id="{{ $notification->id }}">
                             <td>
 
                             </td>
@@ -69,11 +59,6 @@
 
                       
                             <td style="float: right;">
-{{--                                 @can('folder_show')
-                                    <a class="btn-sm btn-indigo" href="{{ route('admin.subjects.show', $subject->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan --}}
 
                                 @can('folder_edit')
                                     <a class="btn-sm btn-blue" href="{{ route('admin.payement.edit', $notification->id) }}">

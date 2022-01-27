@@ -1,11 +1,11 @@
 <?php
 
 Route::redirect('/', '/login');
+
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
     }
-
     return redirect()->route('admin.home');
 });
 
@@ -13,6 +13,7 @@ Auth::routes(['register' => true]);
 // Admin
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    
     Route::get('/', 'HomeController@index')->name('home');
     
     // Permissions
@@ -115,6 +116,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('langues/media', 'LangueController@storeMedia')->name('langues.storeMedia');
     Route::post('langues/ckmedia', 'LangueController@storeCKEditorImages')->name('langues.storeCKEditorImages');
     Route::resource('langues', 'LangueController');
+
+    // Students
+    Route::delete('students/destroy', 'StudentController@massDestroy')->name('students.massDestroy');
+    Route::post('students/media', 'StudentController@storeMedia')->name('students.storeMedia');
+    Route::post('students/ckmedia', 'StudentController@storeCKEditorImages')->name('students.storeCKEditorImages');
+    Route::resource('students', 'StudentController');
+
+    // Classes
+    Route::delete('classes/destroy', 'ClasseController@massDestroy')->name('classes.massDestroy');
+    Route::post('classes/media', 'ClasseController@storeMedia')->name('classes.storeMedia');
+    Route::post('classes/ckmedia', 'ClasseController@storeCKEditorImages')->name('classes.storeCKEditorImages');
+    Route::resource('classes', 'ClasseController');
+
+    // pay
+    Route::delete('pay/destroy', 'PayController@massDestroy')->name('pay.massDestroy');
+    Route::post('pay/media', 'PayController@storeMedia')->name('pay.storeMedia');
+    Route::post('pay/ckmedia', 'PayController@storeCKEditorImages')->name('pay.storeCKEditorImages');
+    Route::resource('pay', 'PayController');
 });
 
 

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Models;
-
+use App\User;
+use App\Models\Student;
+use App\Models\Classe;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
@@ -56,6 +58,16 @@ class Payement extends Model implements HasMedia
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function classe()
+    {
+        return $this->belongsTo(Classe::class, 'receiver');
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'receiver');
     }
 
     public function getFilesAttribute()

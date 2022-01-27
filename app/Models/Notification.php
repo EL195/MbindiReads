@@ -9,6 +9,7 @@ use \DateTimeInterface;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\User;
 
 class Notification extends Model implements HasMedia
 {

@@ -44,12 +44,13 @@
                 <label for="type" class="text-xs required">{{ trans('cruds.global.periode') }}</label>
                 <div class="form-group">
                     <select name="periode" id="periode" class="{{ $errors->has('periode') ? 'is-invalid' : '' }}" value="{{ old('periode') }}" required>
-                        <option value="Annual">{{ trans('cruds.global.annual') }}</option>
-                        <option value="Biannual">{{ trans('cruds.global.biannual') }}</option>
-                        <option value="Quarterly">{{ trans('cruds.global.quarterly') }}</option>
-                        <option value="Monthly">{{ trans('cruds.global.monthly') }}</option>
-                        <option value="Weekly">{{ trans('cruds.global.weekly') }}</option>
-                        <option value="Daily">{{ trans('cruds.global.daily') }}</option>
+                        <option value="732">{{ trans('cruds.global.biannual') }}</option>
+                        <option value="366">{{ trans('cruds.global.annual') }}</option>
+                        <option value="186">{{ trans('cruds.global.semi_annual') }}</option>
+                        <option value="93">{{ trans('cruds.global.quarterly') }}</option>
+                        <option value="31">{{ trans('cruds.global.monthly') }}</option>
+                        <option value="7">{{ trans('cruds.global.weekly') }}</option>
+                        <option value="1">{{ trans('cruds.global.daily') }}</option>
                     </select>
                 </div>
                 @if($errors->has('name'))
